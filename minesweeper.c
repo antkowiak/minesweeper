@@ -32,12 +32,12 @@ static const char * STR_PLAYING = "Playing";
 //
 // Cell Types
 //
-static TCell ERROR = INT8_MAX;
-static TCell MINE = '*';
-static TCell REVEAL = 'R';
-static TCell FLAGGED = 'F';
-static TCell WRONG_FLAG = 'X';
-static TCell BLANK = 0;
+static const TCell ERROR = -1;
+static const TCell MINE = '*';
+static const TCell REVEAL = 'R';
+static const TCell FLAGGED = 'F';
+static const TCell WRONG_FLAG = 'X';
+static const TCell BLANK = 0;
 
 //
 // Generate a random integer in the range [start, end)
@@ -50,9 +50,6 @@ TCell random(const int start = 0, const int end = RAND_MAX)
     int range = end - start;
     int r = rand() % range;
     r += start;
-
-    if (r > ERROR)
-        return ERROR;
 
     return (TCell) r;
 }
