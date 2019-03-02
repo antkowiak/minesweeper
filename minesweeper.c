@@ -1,5 +1,5 @@
 /*
- * minesweeper.c - Minesweeper implemented with the ncurses library.
+ * mines.c - Minesweeper implemented with the ncurses library.
  *
  * Written by Ryan Antkowiak (antkowiak@gmail.com)
  *
@@ -94,8 +94,8 @@ public:
     SBoard( const TCell height,
             const TCell width,
             const TCell mines,
-            WINDOW * pScoreWin,
-            WINDOW * pFieldWin)
+            WINDOW * const pScoreWin,
+            WINDOW * const pFieldWin)
     : height(height), width(width), mines(mines), pScore(pScoreWin), pField(pFieldWin)
     {
         curY = 0;
@@ -184,7 +184,7 @@ public:
     //
     // Gets the cell value of the mine board at index y,x
     //
-    const TCell get(const TCell y, const TCell x)
+    const TCell get(const TCell y, const TCell x) const
     {
         if (is_valid(y, x))
         {
@@ -208,7 +208,7 @@ public:
     //
     // Gets the cell value of the player input board at index y,x
     //
-    const TCell geti(const TCell y, const TCell x)
+    TCell geti(const TCell y, const TCell x) const
     {
         if (is_valid(y, x))
         {
@@ -307,7 +307,7 @@ public:
     // Returns the number of cells that must be successfully revealed in order
     // to win the game
     //
-    TCell max_reveal()
+    TCell max_reveal() const
     {
         return ((height * width) - mines);
     }
@@ -334,7 +334,7 @@ public:
     //
     // Count the number of neighboring cells that have a mine
     //
-    TCell count_neighbors(const TCell y, const TCell x)
+    TCell count_neighbors(const TCell y, const TCell x) const
     {
         TCell count = 0;
 
@@ -350,7 +350,7 @@ public:
     // 
     // Check if the cell location at y,x is in the valid range
     //
-    bool is_valid(TCell y, TCell x)
+    bool is_valid(const TCell y, const TCell x) const
     {
         return (y >= 0 && y < height && x >= 0 && x < width);
     }
@@ -366,7 +366,7 @@ public:
     //
     // Check if the game is done
     //
-    bool is_done()
+    bool is_done() const
     {
         return done;
     }
@@ -405,8 +405,8 @@ public:
             for (TCell x = 0 ; x < width ; ++x)
             {
                 // Grab the mine value and the player input value
-                TCell val = get(y, x);
-                TCell ival = geti(y, x);
+                const TCell val = get(y, x);
+                const TCell ival = geti(y, x);
 
                 if (ival == FLAGGED)
                 {
@@ -458,8 +458,8 @@ public:
                 for (TCell w = 0 ; w < width ; ++w)
                 {
                     // Grab the mine value and the player input value
-                    TCell val = get(h, w);
-                    TCell ival = geti(h, w);
+                    const TCell val = get(h, w);
+                    const TCell ival = geti(h, w);
 
                     // If the cell contains a mine
                     if (val == MINE)
@@ -531,7 +531,7 @@ public:
     }
 
     // Return a string representation of the outcome of the game
-    const char * status()
+    const char * status() const
     {
         if (lose)
             return("Lose");
