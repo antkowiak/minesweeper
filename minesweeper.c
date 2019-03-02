@@ -22,6 +22,14 @@
 typedef int8_t TCell;
 
 //
+// Static status strings
+//
+static const char * STR_LOSE = "Lose";
+static const char * STR_WIN = "Win";
+static const char * STR_ABORTED = "Aborted";
+static const char * STR_PLAYING = "Playing";
+
+//
 // Cell Types
 //
 static TCell ERROR = INT8_MAX;
@@ -534,13 +542,13 @@ public:
     const char * status() const
     {
         if (lose)
-            return("Lose");
+            return STR_LOSE;
         if (win)
-            return("Win");
+            return STR_WIN;
         if (done)
-            return("Aborted");
+            return STR_ABORTED;
 
-        return("Playing");
+        return STR_PLAYING;
     }
 };
 
