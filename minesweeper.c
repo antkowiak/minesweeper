@@ -1,5 +1,5 @@
 /*
- * mines.c - Minesweeper implemented with the ncurses library.
+ * minesweeper.c - Minesweeper implemented with the ncurses library.
  *
  * Written by Ryan Antkowiak (antkowiak@gmail.com)
  *
