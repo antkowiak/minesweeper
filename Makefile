@@ -1,5 +1,5 @@
 minesweeper : minesweeper.c
-	g++ minesweeper.c -lm -lncurses -o minesweeper
+	g++ minesweeper.c -lncurses -o minesweeper
 
 clean :
 	\rm -f minesweeper
